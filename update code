@@ -1,0 +1,19 @@
+private findHeaderRow(data: any[]): number {
+  for (let i = 0; i < Math.min(data.length, 20); i++) {
+    const row = data[i];
+    if (!row || !Array.isArray(row)) continue;
+
+    const lowerRow = row.map(cell =>
+      cell ? cell.toString().toLowerCase().trim() : ''
+    );
+
+    const hasISIN = lowerRow.some(h => h.includes('isin'));
+    const hasPrice = lowerRow.some(h => h.includes('price'));
+    const hasMaturity = lowerRow.some(h => h.includes('maturity'));
+
+    if (hasISIN && hasPrice && hasMaturity) {
+      return i;
+    }
+  }
+  return -1;
+}
