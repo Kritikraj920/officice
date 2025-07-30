@@ -476,3 +476,113 @@ PDR1 processing error: Error: Could not find header row in IM Deal file
     
     return records;
   }
+Processing valuation files: [ 'G_SEC' ]
+Processing Valuation files in processallfiles: [ 'G_SEC' ]
+Processing G_SEC Deal file...
+G-Sec
+Header Data [
+  'isin',
+  'coupon',
+  'maturity(dd-mmm-yyyy)',
+  'price(rs)',
+  'ytm% p.a. (semi-annual)',
+  'remark 1',
+  'remark 2'
+]
+Sample Row [ 'IN0020120047', '8.2', '24-Sep-2025', '100.5816', '5.5645' ]
+Error processing IM Deal file: PrismaClientValidationError: 
+Invalid `this.prisma.G_Sec.deleteMany()` invocation in
+C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:19:31
+
+  16 const records = await this.parseFile(file);
+  17
+  18 // Clear existing data for this batch
+→ 19 await this.prisma.G_Sec.deleteMany({
+       where: {
+         uploadBatchId: "ba4e4846-96c5-4cba-b60b-0292a8ba5983",
+         ~~~~~~~~~~~~~
+     ?   AND?: G_SecWhereInput | G_SecWhereInput[],
+     ?   OR?: G_SecWhereInput[],
+     ?   NOT?: G_SecWhereInput | G_SecWhereInput[],
+     ?   id?: IntFilter | Int,
+     ?   createdAt?: DateTimeFilter | DateTime,
+     ?   updatedAt?: DateTimeFilter | DateTime,
+     ?   isin?: StringFilter | String,
+     ?   maturityDate?: DateTimeFilter | DateTime,
+     ?   priceRs?: FloatFilter | Float,
+     ?   ymt?: FloatFilter | Float
+       }
+     })
+
+Unknown argument `uploadBatchId`. Available options are marked with ?.
+    at throwValidationException (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:45:9)
+    at ri.handleRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:202:7)
+    at ri.handleAndLogRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:174:12)
+    at ri.request (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:143:12)
+    at l (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:862:24) {
+  clientVersion: '6.12.0'
+}
+Error processing Valutaion files: PrismaClientValidationError: 
+Invalid `this.prisma.G_Sec.deleteMany()` invocation in
+C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:19:31
+
+  16 const records = await this.parseFile(file);
+  17
+  18 // Clear existing data for this batch
+→ 19 await this.prisma.G_Sec.deleteMany({
+       where: {
+         uploadBatchId: "ba4e4846-96c5-4cba-b60b-0292a8ba5983",
+         ~~~~~~~~~~~~~
+     ?   AND?: G_SecWhereInput | G_SecWhereInput[],
+     ?   OR?: G_SecWhereInput[],
+     ?   NOT?: G_SecWhereInput | G_SecWhereInput[],
+     ?   id?: IntFilter | Int,
+     ?   createdAt?: DateTimeFilter | DateTime,
+     ?   updatedAt?: DateTimeFilter | DateTime,
+     ?   isin?: StringFilter | String,
+     ?   maturityDate?: DateTimeFilter | DateTime,
+     ?   priceRs?: FloatFilter | Float,
+     ?   ymt?: FloatFilter | Float
+       }
+     })
+
+Unknown argument `uploadBatchId`. Available options are marked with ?.
+    at throwValidationException (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:45:9)
+    at ri.handleRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:202:7)
+    at ri.handleAndLogRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:174:12)
+    at ri.request (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:143:12)
+    at l (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:862:24) {
+  clientVersion: '6.12.0'
+}
+PDR1 processing error: PrismaClientValidationError: 
+Invalid `this.prisma.G_Sec.deleteMany()` invocation in
+C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:19:31
+
+  16 const records = await this.parseFile(file);
+  17
+  18 // Clear existing data for this batch
+→ 19 await this.prisma.G_Sec.deleteMany({
+       where: {
+         uploadBatchId: "ba4e4846-96c5-4cba-b60b-0292a8ba5983",
+         ~~~~~~~~~~~~~
+     ?   AND?: G_SecWhereInput | G_SecWhereInput[],
+     ?   OR?: G_SecWhereInput[],
+     ?   NOT?: G_SecWhereInput | G_SecWhereInput[],
+     ?   id?: IntFilter | Int,
+     ?   createdAt?: DateTimeFilter | DateTime,
+     ?   updatedAt?: DateTimeFilter | DateTime,
+     ?   isin?: StringFilter | String,
+     ?   maturityDate?: DateTimeFilter | DateTime,
+     ?   priceRs?: FloatFilter | Float,
+     ?   ymt?: FloatFilter | Float
+       }
+     })
+
+Unknown argument `uploadBatchId`. Available options are marked with ?.
+    at throwValidationException (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:45:9)
+    at ri.handleRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:202:7)
+    at ri.handleAndLogRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:174:12)
+    at ri.request (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:143:12)
+    at l (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:862:24) {
+  clientVersion: '6.12.0'
+}
