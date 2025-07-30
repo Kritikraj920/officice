@@ -1,0 +1,478 @@
+[
+  [ <1 empty item>, 'Financial Benchmarks India Private Ltd ' ],
+  [],
+  [
+    'FBIL GSec Prices/Yields',
+    <1 empty item>,
+    '30-Jun-2025',
+    '(Month - End)'
+  ],
+  [],
+  [
+    'ISIN',
+    'Coupon',
+    'Maturity(dd-mmm-yyyy)',
+    'Price(Rs)',
+    'YTM% p.a. (Semi-Annual)',
+    'Remark 1',
+    'Remark 2'
+  ],
+  [ 'IN0020120047', '8.2', '24-Sep-2025', '100.5816', '5.5645' ],
+  [ 'IN0020030071', '5.97', '25-Sep-2025', '100.0893', '5.5351' ],
+  [ 'IN0020200278', '5.15', '09-Nov-2025', '99.8482', '5.5663' ],
+  [ 'IN0020150093', '7.59', '11-Jan-2026', '100.9962', '5.6422' ],
+  [ 'IN0020190016', '7.27', '08-Apr-2026', '101.1969', '5.6417' ],
+  [ 'IN0020210012', '5.63', '12-Apr-2026', '100.0159', '5.5963' ],
+  [ 'IN0020230028', '6.99', '17-Apr-2026', '100.9998', '5.6698' ],
+  [ 'IN0020120039', '8.33', '09-Jul-2026', '102.5957', '5.6779' ],
+  [ 'IN0020160035', '6.97', '06-Sep-2026', '101.5542', '5.5815' ],
+  [ 'IN0020010081', '10.18', '11-Sep-2026', '105.1779', '5.6225' ],
+  [ 'IN0020230119', '7.33', '30-Oct-2026', '102.2053', '5.5784' ],
+  [ 'IN0020210186', '5.74', '15-Nov-2026', '100.1039', '5.6544' ],
+  [ 'IN0020140060', '8.15', '24-Nov-2026', '103.2868', '5.6632' ],
+  [ 'IN0020060078', '8.24', '15-Feb-2027', '103.7518', '5.7768' ],
+  [ 'IN0020170026', '6.79', '15-May-2027', '101.7868', '5.7643' ],
+  [
+    'IN0020240043',
+    '7.02',
+    '27-May-2027',
+    '102.2882',
+    '5.7311',
+    <1 empty item>,
+    'YC'
+  ],
+  [
+    'IN0020220037',
+    '7.38',
+    '20-Jun-2027',
+    '103.0271',
+    '5.7311',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020070036', '8.26', '02-Aug-2027', '104.8065', '5.7769' ],
+  [ 'IN0020070069', '8.28', '21-Sep-2027', '104.9927', '5.8445' ],
+  [ 'IN0020240167', '6.64', '09-Dec-2027', '101.8277', '5.8230' ],
+  [
+    'IN0020170174',
+    '7.17',
+    '08-Jan-2028',
+    '102.9394',
+    '5.8966',
+    'Input Point',
+    <1 empty item>,
+    'Proxy'
+  ],
+  [ 'IN0020220136', '7.1', '27-Jan-2028', '102.8202', '5.8995' ],
+  [ 'IN0020020247', '6.01', '25-Mar-2028', '100.2548', '5.9033' ],
+  [
+    'IN0020230010',
+    '7.06',
+    '10-Apr-2028',
+    '102.9627',
+    '5.8823',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020140011', '8.6', '02-Jun-2028', '107.1132', '5.9084' ],
+  [ 'IN0020030022', '6.13', '04-Jun-2028', '100.6922', '5.8669' ],
+  [ 'IN0020250034', '5.91', '30-Jun-2028', '100.0040', '5.9084' ],
+  [ 'IN0020230101', '7.37', '23-Oct-2028', '104.2937', '5.9187' ],
+  [ 'IN0020230143', '7.25', '13-Nov-2028', '103.8466', '5.9684' ],
+  [
+    'IN0020180454',
+    '7.26',
+    '14-Jan-2029',
+    '104.0261',
+    '5.9788',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020150069', '7.59', '20-Mar-2029', '105.3572', '5.9587' ],
+  [
+    'IN0020220011',
+    '7.1',
+    '18-Apr-2029',
+    '103.6947',
+    '5.9939',
+    <2 empty items>,
+    'T'
+  ],
+  [
+    'IN0020240050',
+    '7.04',
+    '03-Jun-2029',
+    '103.5780',
+    '6.0007',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020190362', '6.45', '07-Oct-2029', '101.5775', '6.0220' ],
+  [
+    'IN0020240183',
+    '6.75',
+    '23-Dec-2029',
+    '102.8786',
+    '6.0067',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020160118', '6.79', '26-Dec-2029', '102.8627', '6.0514' ],
+  [ 'IN0020150028', '7.88', '19-Mar-2030', '107.0534', '6.1317' ],
+  [
+    'IN0020230036',
+    '7.17',
+    '17-Apr-2030',
+    '104.3284',
+    '6.1117',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020160019', '7.61', '09-May-2030', '106.0313', '6.1514' ],
+  [ 'IN0020200070', '5.79', '11-May-2030', '98.7592', '6.0866' ],
+  [ 'IN0020200153', '5.77', '03-Aug-2030', '98.3107', '6.1603' ],
+  [ 'IN0020130053', '9.2', '30-Sep-2030', '112.7080', '6.3132' ],
+  [
+    'IN0020230135',
+    '7.32',
+    '13-Nov-2030',
+    '105.3350',
+    '6.1358',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020200294', '5.85', '01-Dec-2030', '98.5667', '6.1639' ],
+  [ 'IN0020110055', '8.97', '05-Dec-2030', '112.5694', '6.2052' ],
+  [
+    'IN0020240076',
+    '7.02',
+    '18-Jun-2031',
+    '103.9146',
+    '6.2235',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020210095', '6.1', '12-Jul-2031', '99.1660', '6.2677' ],
+  [ 'IN0020170042', '6.68', '17-Sep-2031', '102.2196', '6.2410' ],
+  [
+    'IN0020240191',
+    '6.79',
+    '30-Dec-2031',
+    '102.8540',
+    '6.2488',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [
+    'IN0020210244',
+    '6.54',
+    '17-Jan-2032',
+    '101.0926',
+    '6.3327',
+    <1 empty item>,
+    'YC'
+  ],
+  [
+    'IN0020060086',
+    '8.28',
+    '15-Feb-2032',
+    '110.3891',
+    '6.3327',
+    <1 empty item>,
+    'YC'
+  ],
+  [ 'IN0020070044', '8.32', '02-Aug-2032', '110.8911', '6.3836' ],
+  [
+    'IN0020220060',
+    '7.26',
+    '22-Aug-2032',
+    '105.2502',
+    '6.3327',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020020106', '7.95', '28-Aug-2032', '108.9392', '6.3729' ],
+  [ 'IN0020070077', '8.33', '21-Sep-2032', '111.1202', '6.3815' ],
+  [ 'IN0020220144', '7.29', '27-Jan-2033', '105.2730', '6.3993' ],
+  [
+    'IN0020220151',
+    '7.26',
+    '06-Feb-2033',
+    '105.1323',
+    '6.3951',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020190065', '7.57', '17-Jun-2033', '107.1472', '6.4091' ],
+  [
+    'IN0020230085',
+    '7.18',
+    '14-Aug-2033',
+    '104.8362',
+    '6.4052',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020140052', '8.24', '10-Nov-2033', '111.5323', '6.4326' ],
+  [ 'IN0020160100', '6.57', '05-Dec-2033', '100.9149', '6.4267' ],
+  [ 'IN0020230150', '7.24', '11-Dec-2033', '105.2376', '6.4258' ],
+  [
+    'IN0020240019',
+    '7.1',
+    '08-Apr-2034',
+    '104.5427',
+    '6.4126',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020240100', '6.9', '05-Aug-2034', '103.1891', '6.4302' ],
+  [
+    'IN0020040039',
+    '7.5',
+    '10-Aug-2034',
+    '107.2198',
+    '6.4385',
+    <2 empty items>,
+    'T'
+  ],
+  [
+    'IN0020200096',
+    '6.19',
+    '16-Sep-2034',
+    '98.3361',
+    '6.4305',
+    <2 empty items>,
+    'T'
+  ],
+  [
+    'IN0020240126',
+    '6.79',
+    '07-Oct-2034',
+    '102.8187',
+    '6.3805',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020240159', '6.79', '02-Dec-2034', '102.6835', '6.4051' ],
+  [ 'IN0020150051', '7.73', '19-Dec-2034', '109.4314', '6.3865' ],
+  [ 'IN0020200245', '6.22', '16-Mar-2035', '98.3943', '6.4434' ],
+  [
+    'IN0020250026',
+    '6.33',
+    '05-May-2035',
+    '100.0907',
+    '6.3160',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020210020', '6.64', '16-Jun-2035', '101.4156', '6.4446' ],
+  [ 'IN0020050012', '7.4', '09-Sep-2035', '107.2569', '6.4169' ],
+  [ 'IN0020210152', '6.67', '15-Dec-2035', '101.5528', '6.4628' ],
+  [
+    'IN0020220029',
+    '7.54',
+    '23-May-2036',
+    '107.6373',
+    '6.5472',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [
+    'IN0020060045',
+    '8.33',
+    '07-Jun-2036',
+    '113.7589',
+    '6.5472',
+    <1 empty item>,
+    'YC'
+  ],
+  [
+    'IN0020220102',
+    '7.41',
+    '19-Dec-2036',
+    '106.6880',
+    '6.5701',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [
+    'IN0020230077',
+    '7.18',
+    '24-Jul-2037',
+    '104.4567',
+    '6.6366',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020080050', '6.83', '19-Jan-2039', '101.2869', '6.6836' ],
+  [
+    'IN0020240027',
+    '7.23',
+    '15-Apr-2039',
+    '104.9083',
+    '6.6782',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020190024', '7.62', '15-Sep-2039', '108.3673', '6.6963' ],
+  [
+    'IN0020240134',
+    '6.92',
+    '18-Nov-2039',
+    '102.2710',
+    '6.6708',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020100031', '8.3', '02-Jul-2040', '114.8002', '6.7189' ],
+  [ 'IN0020110063', '8.83', '12-Dec-2041', '120.4091', '6.7551' ],
+  [ 'IN0020120062', '8.3', '31-Dec-2042', '115.4145', '6.7820' ],
+  [ 'IN0020190040', '7.69', '17-Jun-2043', '109.2163', '6.7935' ],
+  [ 'IN0020130079', '9.23', '23-Dec-2043', '125.2619', '6.8068' ],
+  [
+    'IN0020140078',
+    '8.17',
+    '01-Dec-2044',
+    '114.3324',
+    '6.8259',
+    'Input Point',
+    <1 empty item>,
+    'Proxy'
+  ],
+  [ 'IN0020150044', '8.13', '22-Jun-2045', '113.7922', '6.8520' ],
+  [ 'IN0020160068', '7.06', '10-Oct-2046', '101.8783', '6.8891' ],
+  [
+    'IN0020190032',
+    '7.72',
+    '15-Jun-2049',
+    '108.8596',
+    '6.9547',
+    'Input Point',
+    <1 empty item>,
+    'T'
+  ],
+  [ 'IN0020200054', '7.16', '20-Sep-2050', '102.0031', '6.9886' ],
+  [ 'IN0020200252', '6.67', '17-Dec-2050', '96.5645', '6.9595' ],
+  [ 'IN0020160092', '6.62', '28-Nov-2051', '95.4245', '7.0018' ],
+  [ 'IN0020210194', '6.99', '15-Dec-2051', '99.4000', '7.0399' ],
+  ... 22 more items
+]
+Error processing IM Deal file: Error: Could not find header row in IM Deal file
+    at GSECProcessor.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:83:13)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:42:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:38:12)
+    at GSECProcessor.parseFile (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:97:16)
+    at GSECProcessor.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:16:34)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:42:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:38:12)
+    at GSECProcessor.processFile (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:55:16)
+    at ValuationService.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\valuationService.ts:107:52)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\valuationService.ts:8:71
+    at new Promise (<anonymous>)
+Error processing Valutaion files: Error: Could not find header row in IM Deal file
+    at GSECProcessor.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:83:13)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:42:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:38:12)
+    at GSECProcessor.parseFile (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:97:16)
+    at GSECProcessor.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:16:34)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:42:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:38:12)
+    at GSECProcessor.processFile (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:55:16)
+    at ValuationService.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\valuationService.ts:107:52)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\valuationService.ts:8:71
+    at new Promise (<anonymous>)
+PDR1 processing error: Error: Could not find header row in IM Deal file
+    at GSECProcessor.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:83:13)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:42:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:38:12)
+    at GSECProcessor.parseFile (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:97:16)
+    at GSECProcessor.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:16:34)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:42:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:38:12)
+    at GSECProcessor.processFile (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:55:16)
+    at ValuationService.<anonymous> (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\valuationService.ts:107:52)
+    at Generator.next (<anonymous>)
+    at C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\valuationService.ts:8:71
+    at new Promise (<anonymous>)
+ private async parseFile(file: Express.Multer.File): Promise<any[]> {
+    const workbook = XLSX.read(file.buffer, { 
+      type: 'buffer',
+      cellDates: true,
+      dateNF: 'dd-mmm-yyyy'
+    });
+    // Find the "Details" sheet
+    const sheetName = Object.keys(workbook.Sheets).find(
+      name => name.toLowerCase() === 'g-sec'
+    );
+    console.log(sheetName);
+    if (!sheetName) {
+      throw new Error('Details sheet not found in G_SEC file');
+    }
+    
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonData = XLSX.utils.sheet_to_json(worksheet, { 
+      header: 1,
+      raw: false,
+      dateNF: 'dd-mmm-yyyy'
+    });
+    console.log(jsonData);
+    // Find header row
+    const headerRowIndex = this.findHeaderRow(jsonData);
+    if (headerRowIndex === -1) {
+      throw new Error('Could not find header row in IM Deal file');
+    }
+    
+    // Extract headers
+    const headers = (jsonData[headerRowIndex] as string[]).map(h => 
+      h ? h.toString().toLowerCase().trim() : ''
+    );
+    console.log(headers);
+    console.log("Sample Row",jsonData[headerRowIndex+1]);
+    // Process data rows
+    const records = [];
+    for (let i = headerRowIndex + 1; i < jsonData.length; i++) {
+      const row = jsonData[i] as any[];
+      if (!row || row.length === 0) continue;
+      
+      const record = this.mapRowToRecord(headers, row);
+      if (record) {
+        records.push(record);
+      }
+    }
+    
+    return records;
+  }
