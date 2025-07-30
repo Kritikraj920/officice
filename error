@@ -151,3 +151,841 @@ export class GSECProcessor extends BaseFileProcessor {
     return record;
   }
 }
+:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\src\services\valuation\processors\GSECProcessor.ts:41:33
+
+  38
+  39 // Bulk insert
+  40 if (processedRecords.length > 0) {
+→ 41   await this.prisma.G_Sec.createMany({
+         data: [
+           {
+             ISIN: "IN0020120047",
+             Coupon: "8.2",
+             Price: "100.5816",
+             YTM%: "5.5645",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020030071",
+             Coupon: "5.97",
+             Price: "100.0893",
+             YTM%: "5.5351",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200278",
+             Coupon: "5.15",
+             Price: "99.8482",
+             YTM%: "5.5663",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020150093",
+             Coupon: "7.59",
+             Price: "100.9962",
+             YTM%: "5.6422",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020190016",
+             Coupon: "7.27",
+             Price: "101.1969",
+             YTM%: "5.6417",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210012",
+             Coupon: "5.63",
+             Price: "100.0159",
+             YTM%: "5.5963",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230028",
+             Coupon: "6.99",
+             Price: "100.9998",
+             YTM%: "5.6698",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020120039",
+             Coupon: "8.33",
+             Price: "102.5957",
+             YTM%: "5.6779",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020160035",
+             Coupon: "6.97",
+             Price: "101.5542",
+             YTM%: "5.5815",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020010081",
+             Coupon: "10.18",
+             Price: "105.1779",
+             YTM%: "5.6225",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230119",
+             Coupon: "7.33",
+             Price: "102.2053",
+             YTM%: "5.5784",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210186",
+             Coupon: "5.74",
+             Price: "100.1039",
+             YTM%: "5.6544",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020140060",
+             Coupon: "8.15",
+             Price: "103.2868",
+             YTM%: "5.6632",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020060078",
+             Coupon: "8.24",
+             Price: "103.7518",
+             YTM%: "5.7768",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020170026",
+             Coupon: "6.79",
+             Price: "101.7868",
+             YTM%: "5.7643",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240043",
+             Coupon: "7.02",
+             Price: "102.2882",
+             YTM%: "5.7311",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220037",
+             Coupon: "7.38",
+             Price: "103.0271",
+             YTM%: "5.7311",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020070036",
+             Coupon: "8.26",
+             Price: "104.8065",
+             YTM%: "5.7769",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020070069",
+             Coupon: "8.28",
+             Price: "104.9927",
+             YTM%: "5.8445",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240167",
+             Coupon: "6.64",
+             Price: "101.8277",
+             YTM%: "5.8230",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020170174",
+             Coupon: "7.17",
+             Price: "102.9394",
+             YTM%: "5.8966",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220136",
+             Coupon: "7.1",
+             Price: "102.8202",
+             YTM%: "5.8995",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020020247",
+             Coupon: "6.01",
+             Price: "100.2548",
+             YTM%: "5.9033",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230010",
+             Coupon: "7.06",
+             Price: "102.9627",
+             YTM%: "5.8823",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020140011",
+             Coupon: "8.6",
+             Price: "107.1132",
+             YTM%: "5.9084",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020030022",
+             Coupon: "6.13",
+             Price: "100.6922",
+             YTM%: "5.8669",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020250034",
+             Coupon: "5.91",
+             Price: "100.0040",
+             YTM%: "5.9084",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230101",
+             Coupon: "7.37",
+             Price: "104.2937",
+             YTM%: "5.9187",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230143",
+             Coupon: "7.25",
+             Price: "103.8466",
+             YTM%: "5.9684",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020180454",
+             Coupon: "7.26",
+             Price: "104.0261",
+             YTM%: "5.9788",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020150069",
+             Coupon: "7.59",
+             Price: "105.3572",
+             YTM%: "5.9587",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220011",
+             Coupon: "7.1",
+             Price: "103.6947",
+             YTM%: "5.9939",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240050",
+             Coupon: "7.04",
+             Price: "103.5780",
+             YTM%: "6.0007",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020190362",
+             Coupon: "6.45",
+             Price: "101.5775",
+             YTM%: "6.0220",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240183",
+             Coupon: "6.75",
+             Price: "102.8786",
+             YTM%: "6.0067",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020160118",
+             Coupon: "6.79",
+             Price: "102.8627",
+             YTM%: "6.0514",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020150028",
+             Coupon: "7.88",
+             Price: "107.0534",
+             YTM%: "6.1317",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230036",
+             Coupon: "7.17",
+             Price: "104.3284",
+             YTM%: "6.1117",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020160019",
+             Coupon: "7.61",
+             Price: "106.0313",
+             YTM%: "6.1514",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200070",
+             Coupon: "5.79",
+             Price: "98.7592",
+             YTM%: "6.0866",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200153",
+             Coupon: "5.77",
+             Price: "98.3107",
+             YTM%: "6.1603",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020130053",
+             Coupon: "9.2",
+             Price: "112.7080",
+             YTM%: "6.3132",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230135",
+             Coupon: "7.32",
+             Price: "105.3350",
+             YTM%: "6.1358",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200294",
+             Coupon: "5.85",
+             Price: "98.5667",
+             YTM%: "6.1639",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020110055",
+             Coupon: "8.97",
+             Price: "112.5694",
+             YTM%: "6.2052",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240076",
+             Coupon: "7.02",
+             Price: "103.9146",
+             YTM%: "6.2235",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210095",
+             Coupon: "6.1",
+             Price: "99.1660",
+             YTM%: "6.2677",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020170042",
+             Coupon: "6.68",
+             Price: "102.2196",
+             YTM%: "6.2410",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240191",
+             Coupon: "6.79",
+             Price: "102.8540",
+             YTM%: "6.2488",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210244",
+             Coupon: "6.54",
+             Price: "101.0926",
+             YTM%: "6.3327",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020060086",
+             Coupon: "8.28",
+             Price: "110.3891",
+             YTM%: "6.3327",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020070044",
+             Coupon: "8.32",
+             Price: "110.8911",
+             YTM%: "6.3836",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220060",
+             Coupon: "7.26",
+             Price: "105.2502",
+             YTM%: "6.3327",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020020106",
+             Coupon: "7.95",
+             Price: "108.9392",
+             YTM%: "6.3729",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020070077",
+             Coupon: "8.33",
+             Price: "111.1202",
+             YTM%: "6.3815",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220144",
+             Coupon: "7.29",
+             Price: "105.2730",
+             YTM%: "6.3993",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220151",
+             Coupon: "7.26",
+             Price: "105.1323",
+             YTM%: "6.3951",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020190065",
+             Coupon: "7.57",
+             Price: "107.1472",
+             YTM%: "6.4091",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230085",
+             Coupon: "7.18",
+             Price: "104.8362",
+             YTM%: "6.4052",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020140052",
+             Coupon: "8.24",
+             Price: "111.5323",
+             YTM%: "6.4326",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020160100",
+             Coupon: "6.57",
+             Price: "100.9149",
+             YTM%: "6.4267",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230150",
+             Coupon: "7.24",
+             Price: "105.2376",
+             YTM%: "6.4258",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240019",
+             Coupon: "7.1",
+             Price: "104.5427",
+             YTM%: "6.4126",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240100",
+             Coupon: "6.9",
+             Price: "103.1891",
+             YTM%: "6.4302",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020040039",
+             Coupon: "7.5",
+             Price: "107.2198",
+             YTM%: "6.4385",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200096",
+             Coupon: "6.19",
+             Price: "98.3361",
+             YTM%: "6.4305",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240126",
+             Coupon: "6.79",
+             Price: "102.8187",
+             YTM%: "6.3805",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240159",
+             Coupon: "6.79",
+             Price: "102.6835",
+             YTM%: "6.4051",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020150051",
+             Coupon: "7.73",
+             Price: "109.4314",
+             YTM%: "6.3865",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200245",
+             Coupon: "6.22",
+             Price: "98.3943",
+             YTM%: "6.4434",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020250026",
+             Coupon: "6.33",
+             Price: "100.0907",
+             YTM%: "6.3160",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210020",
+             Coupon: "6.64",
+             Price: "101.4156",
+             YTM%: "6.4446",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020050012",
+             Coupon: "7.4",
+             Price: "107.2569",
+             YTM%: "6.4169",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210152",
+             Coupon: "6.67",
+             Price: "101.5528",
+             YTM%: "6.4628",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220029",
+             Coupon: "7.54",
+             Price: "107.6373",
+             YTM%: "6.5472",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020060045",
+             Coupon: "8.33",
+             Price: "113.7589",
+             YTM%: "6.5472",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220102",
+             Coupon: "7.41",
+             Price: "106.6880",
+             YTM%: "6.5701",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230077",
+             Coupon: "7.18",
+             Price: "104.4567",
+             YTM%: "6.6366",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020080050",
+             Coupon: "6.83",
+             Price: "101.2869",
+             YTM%: "6.6836",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240027",
+             Coupon: "7.23",
+             Price: "104.9083",
+             YTM%: "6.6782",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020190024",
+             Coupon: "7.62",
+             Price: "108.3673",
+             YTM%: "6.6963",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240134",
+             Coupon: "6.92",
+             Price: "102.2710",
+             YTM%: "6.6708",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020100031",
+             Coupon: "8.3",
+             Price: "114.8002",
+             YTM%: "6.7189",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020110063",
+             Coupon: "8.83",
+             Price: "120.4091",
+             YTM%: "6.7551",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020120062",
+             Coupon: "8.3",
+             Price: "115.4145",
+             YTM%: "6.7820",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020190040",
+             Coupon: "7.69",
+             Price: "109.2163",
+             YTM%: "6.7935",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020130079",
+             Coupon: "9.23",
+             Price: "125.2619",
+             YTM%: "6.8068",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020140078",
+             Coupon: "8.17",
+             Price: "114.3324",
+             YTM%: "6.8259",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020150044",
+             Coupon: "8.13",
+             Price: "113.7922",
+             YTM%: "6.8520",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020160068",
+             Coupon: "7.06",
+             Price: "101.8783",
+             YTM%: "6.8891",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020190032",
+             Coupon: "7.72",
+             Price: "108.8596",
+             YTM%: "6.9547",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200054",
+             Coupon: "7.16",
+             Price: "102.0031",
+             YTM%: "6.9886",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200252",
+             Coupon: "6.67",
+             Price: "96.5645",
+             YTM%: "6.9595",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020160092",
+             Coupon: "6.62",
+             Price: "95.4245",
+             YTM%: "7.0018",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210194",
+             Coupon: "6.99",
+             Price: "99.4000",
+             YTM%: "7.0399",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220086",
+             Coupon: "7.36",
+             Price: "103.9074",
+             YTM%: "7.0344",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230051",
+             Coupon: "7.3",
+             Price: "103.0680",
+             YTM%: "7.0471",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230176",
+             Coupon: "7.37",
+             Price: "103.9047",
+             YTM%: "7.0500",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240118",
+             Coupon: "7.09",
+             Price: "100.4557",
+             YTM%: "7.0522",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240175",
+             Coupon: "6.98",
+             Price: "99.2750",
+             YTM%: "7.0383",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020150077",
+             Coupon: "7.72",
+             Price: "109.4002",
+             YTM%: "6.9698",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020190057",
+             Coupon: "7.63",
+             Price: "107.6373",
+             YTM%: "7.0356",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200039",
+             Coupon: "7.19",
+             Price: "101.6465",
+             YTM%: "7.0615",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200187",
+             Coupon: "6.8",
+             Price: "96.5116",
+             YTM%: "7.0692",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200401",
+             Coupon: "6.76",
+             Price: "95.9034",
+             YTM%: "7.0755",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210202",
+             Coupon: "6.95",
+             Price: "98.1595",
+             YTM%: "7.0913",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020220094",
+             Coupon: "7.4",
+             Price: "103.5419",
+             YTM%: "7.1262",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230044",
+             Coupon: "7.25",
+             Price: "101.7193",
+             YTM%: "7.1179",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240035",
+             Coupon: "7.34",
+             Price: "103.0041",
+             YTM%: "7.1101",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020250018",
+             Coupon: "6.9",
+             Price: "97.4373",
+             YTM%: "7.0928",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020230127",
+             Coupon: "7.46",
+             Price: "104.3200",
+             YTM%: "7.1398",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020240142",
+             Coupon: "7.09",
+             Price: "99.4596",
+             YTM%: "7.1290",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210160",
+             Coupon: "7.11",
+             Price: "101.2900",
+             YTM%: "5.7430",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020180041",
+             Coupon: "6.63",
+             Price: "102.4075",
+             YTM%: "6.0159",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020200120",
+             Coupon: "7.81",
+             Price: "104.0400",
+             YTM%: "6.0850",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020210137",
+             Coupon: "6.99",
+             Price: "102.2925",
+             YTM%: "6.1373",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           },
+           {
+             ISIN: "IN0020042050",
+             Coupon: "6.66",
+             Price: "102.1507",
+             YTM%: "6.1117",
+             uploadBatchId: "f29e9500-ca8b-4bcd-9e93-6b7a98a0d7f7"
+           }
+         ]
+       })
+
+Argument `isin` is missing.
+    at throwValidationException (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\core\errorRendering\throwValidationException.ts:45:9)
+    at ri.handleRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:202:7)
+    at ri.handleAndLogRequestError (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:174:12)
+    at ri.request (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:143:12)
+    at l (C:\Users\Kritik.Raj\OneDrive - Grant Thornton Advisory Private Limited\Desktop\AG_GT\ag-gt-app\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:862:24) {
+  clientVersion: '6.12.0'
+}
+
