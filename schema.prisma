@@ -1,0 +1,1042 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// =========================================================
+// 1. CONFIGURATION
+// =========================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =========================================================
+// 2. ENUMS
+// =========================================================
+
+// User related enums
+enum Position {
+  ADMIN
+  USERS
+  HOD
+  MAKER
+  CHECKER
+}
+
+enum Department {
+  PRODUCT
+  OPERATIONS
+  FINANCE
+  IT
+  HR
+  COMPLIANCE
+  RISK
+}
+
+// Entity related enums
+enum EntityType {
+  BANK 
+  NBFC
+  OTHER
+}
+
+// Status enums
+enum Status {
+  NONE
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// RBI related enums
+enum Theme {
+  PROCESS_AND_CONTROL
+  GOVERNANCE
+  PEOPLE
+  TECHNOLOGY
+  NOT_APPLICABLE
+}
+
+enum LevelOfDocumentation {
+  ADEQUATELY_DOCUMENTED
+  INADEQUATELY_DOCUMENTED
+  NOT_DOCUMENTED
+  NOT_APPLICABLE
+}
+
+enum LevelOfAutomationOfControl {
+  SEMI_AUTOMATED
+  AUTOMATED
+  MANUAL
+  NOT_APPLICABLE
+}
+
+enum ComplianceStatus {
+  FULLY_COMPLIED
+  NOT_COMPLIED
+  NOT_APPLICABLE
+  PARTIALLY_COMPLIED
+}
+
+enum RiskRating {
+  VERY_HIGH
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum MapStatus {
+  OPEN
+  CLOSED
+}
+
+// Circular related enums
+enum Applicability {
+  APPLICABLE
+  NOT_APPLICABLE
+}
+
+enum CircularState {
+  NOT_INITIATED
+  INITIATED
+  REJECTED
+  CLOSURE
+}
+
+enum InternalFinalStatus {
+  ACTIVE
+  INACTIVE
+  ACTIVE_PENDING
+  INACTIVE_PENDING
+  ACTIVE_REJECTED
+  INACTIVE_REJECTED
+}
+
+// =========================================================
+// 3. USER MODELS
+// =========================================================
+
+model User {
+  id             Int         @id @default(autoincrement())
+  name           String
+  email          String      @unique
+  // password       String
+  mobile         String?     @unique
+  refreshToken   String?  
+  role           Position 
+  department     Department  
+  //lastLoginAt    DateTime? 
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @default(now()) @updatedAt
+
+  @@index([role, department])
+}
+
+// =========================================================
+// 4. ENTITY MODELS
+// =========================================================
+
+model Entity {
+  id                 Int                 @unique @default(autoincrement())
+  name               String
+  type               EntityType
+  year               Int
+  createdAt          DateTime            @default(now())
+  previousRBIData    Boolean             @default(false)
+  previousBCBSData   Boolean             @default(false)
+  files              File[]  
+
+  bcbsApplicabilities BCBSApplicability[] @relation("EntityToBCBS")
+  rbiApplicabilities  RBIApplicability[]  @relation("EntityToRBI")
+
+  @@id([name, type, year])
+  @@index([name])
+  @@index([type])
+  @@index([year])
+  @@index([name, type, year], name: "name_type_year")
+}
+
+model File {
+  id        Int      @id @default(autoincrement())
+  name      String
+  path      String
+  mimeType  String
+  size      Int
+  entityId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  entity    Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
+
+  @@index([entityId])
+}
+
+// =========================================================
+// 5. BCBS MODELS
+// =========================================================
+
+model BCBSCommon {
+  srNo              Int
+  circularReference String
+  regulator         String
+  sectionReference  String?
+  circularExtract   String
+
+  bcbsApplicabilities BCBSApplicability[]
+
+  @@id([srNo, circularReference])
+  @@unique([srNo, circularReference])
+  @@index([regulator])
+}
+
+model BCBSApplicability {
+  id               Int          @id @default(autoincrement())
+  entityId         Int
+  bcbsCommonSrNo   Int
+  bcbsCommonCircularReference String
+  applicability    String?
+  policyReference  String?
+  policyExtract    String?
+  processCoverage  String?
+  checkerRemarks   String?
+  status           Status       @default(NONE) // Approval status
+
+  entity           Entity       @relation(fields: [entityId], references: [id], onDelete: Cascade, name:"EntityToBCBS")
+  bcbsCommon       BCBSCommon   @relation(fields: [bcbsCommonSrNo, bcbsCommonCircularReference], references: [srNo, circularReference], onDelete: Cascade)
+
+  @@index([entityId])
+  @@index([status])
+  @@index([bcbsCommonSrNo, bcbsCommonCircularReference])
+}
+
+// =========================================================
+// 6. RBI MODELS
+// =========================================================
+
+model RBICommon {
+  srNo              Int
+  circularReference String
+  regulator         String
+  sectionReference  String?  // Changed from int to string
+  circularExtract   String
+
+  rbiApplicabilities RBIApplicability[]
+
+  @@id([srNo, circularReference])
+  @@unique([srNo, circularReference])
+  @@index([regulator])
+}
+
+model RBIApplicability {
+  id                                Int          @id @default(autoincrement())
+  entityId                          Int
+  rbiCommonSrNo                     Int
+  rbiCommonCircularReference        String
+  applicability                     String?
+  policyReference                   String?
+  policyExtract                     String?
+  processCoverage                   String?
+  keyControls                       String?
+  observationReference              String?
+  checkerRemarks                    String?
+  status                            Status       @default(NONE) // Approval status
+
+  // new fields with enums
+  theme                             Theme?
+  levelOfDocumentationOfControl     LevelOfDocumentation?
+  levelOfAutomationOfControl        LevelOfAutomationOfControl?
+  overallControlDesignScore         Int?
+  complianceStatus                  ComplianceStatus?
+  complianceScore                   Int?
+  finalRiskScore                    Int?
+  riskRating                        RiskRating?
+  managementResponses               String?
+  managementActionPlanTimelineDate  DateTime?
+  mapAgeing                         String?
+  mapStatus                         MapStatus?
+
+  // Relations
+  entity                            Entity       @relation(fields: [entityId], references: [id], onDelete: Cascade, name: "EntityToRBI")
+  rbiCommon                         RBICommon    @relation(fields: [rbiCommonSrNo, rbiCommonCircularReference], references: [srNo, circularReference], onDelete: Cascade)
+
+  @@index([entityId])
+  @@index([status])
+  @@index([rbiCommonSrNo, rbiCommonCircularReference])
+  @@index([riskRating])
+  @@index([mapStatus])
+}
+
+// =========================================================
+// 7. REGULATOR AND CIRCULAR MODELS
+// =========================================================
+
+model Regulator {
+  id        Int      @id @default(autoincrement())
+  value     String   @unique
+  label     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([value]) 
+}
+
+model Circulars {
+  id                 Int       @id @default(autoincrement())
+  circularReference  String    @unique
+  regulator          String
+  circularTitle      String
+  circularDate       DateTime
+  circularExtract    String?
+  circularLink       String    // Changed from Nullable to Required
+  latest             Boolean?  @default(false)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  circularsInternal  CircularsInternal[]
+
+  @@index([regulator])
+  @@index([circularDate])
+  @@index([circularReference])
+}
+
+model CircularsInternal {
+  id                      Int              @default(autoincrement())
+  circularId              Int              @id
+  financialYear           String           // Changed from Nullable to Required
+  dateOfDissemination     DateTime
+  regulatorSubDept        String?
+  applicable              Applicability
+  reasonForNotApplicable  String?
+  applicability           String?
+  gist                    String
+  policyToUpdate          Boolean
+  toBePlacedToBoardOrCommittee Boolean
+  committeeName           String?
+  regulatoryTimelines     Boolean
+  regulatoryDeadline      DateTime?
+  actionType              String?
+  circularWebsiteLink     String           // Changed from Nullable to Required
+  attachment              String           // Changed from Nullable to Required
+  linkedToEarlierCircular Boolean
+  relatedCircularNumbers  Int[]
+  circularState           CircularState    @default(NOT_INITIATED)
+  remarks                 String? 
+  finalStatus             InternalFinalStatus @default(ACTIVE)  // Added this field
+  reason                  String?          // Added this field
+  createdAt               DateTime         @default(now())
+  updatedAt               DateTime         @updatedAt
+
+  Circular Circulars @relation(fields: [circularId], references: [id], onDelete: Cascade)
+
+  @@index([circularId])
+  @@index([circularState])
+  @@index([finalStatus]) 
+  @@index([dateOfDissemination])
+  @@index([toBePlacedToBoardOrCommittee, committeeName])
+  @@index([circularState, finalStatus])
+}
+
+// =========================================================
+// 8. DISSEMINATION AUDIT TRAIL MODEL
+// =========================================================
+
+model DisseminationAuditTrail {
+  id         Int      @id @default(autoincrement())
+  timestamp  DateTime @default(now())
+  itemId     Int 
+  itemType   String
+  user       String
+  userRole   String 
+  action     String
+  changes    String
+  itemStatus String
+  
+  @@index([itemId])
+  @@index([itemType])
+}
+
+// stoploss automation
+
+// Risk management configuration
+model RiskManagementLimit {
+  minResidualMaturity  Decimal     @db.Decimal(5, 2) @map("min_residual_maturity")
+  maxResidualMaturity  Decimal     @db.Decimal(5, 2) @map("max_residual_maturity")
+  cutLossLimit         Decimal     @db.Decimal(5, 2) @map("cut_loss_limit")
+  profitBookingLimit   Decimal     @db.Decimal(5, 2) @map("profit_booking_limit")
+  
+  isActive             Boolean     @default(true) @map("is_active")
+  createdAt            DateTime    @default(now()) @map("created_at")
+  updatedAt            DateTime    @updatedAt @map("updated_at")
+  
+  @@id([minResidualMaturity, maxResidualMaturity])
+  @@map("risk_management_limits")
+}
+
+// ============================================================================
+// PROCESSING AUDIT TABLES (Keep for audit trail)
+// ============================================================================
+
+model StopLossProcessing {
+  id                    String                @id @default(cuid())
+  createdAt             DateTime              @default(now()) @map("created_at")
+  updatedAt             DateTime              @updatedAt @map("updated_at")
+  
+  // Processing details
+  processDate           DateTime              @db.Date @map("process_date")
+  fimmdaFileName        String                @map("fimmda_file_name")
+  tradingPlatformFileName String              @map("trading_platform_file_name")
+  tradeByTradeFileName  String                @map("trade_by_trade_file_name")
+  
+  // Processing status
+  status                ProcessingStatus      @default(PENDING)
+  errorMessage          String?               @map("error_message")
+  
+  // Summary statistics
+  totalSecurities       Int                   @default(0) @map("total_securities")
+  totalLossBreaches     Int                   @default(0) @map("total_loss_breaches")
+  totalProfitBreaches   Int                   @default(0) @map("total_profit_breaches")
+  
+  // Relations
+  results               StopLossResult[]
+  breaches              StopLossBreachResult[]
+  
+  @@map("stop_loss_processing")
+}
+
+// Results of stop loss analysis (for audit trail)
+model StopLossResult {
+  id                    String                @id @default(cuid())
+  processingId          String                @map("processing_id")
+  processing            StopLossProcessing    @relation(fields: [processingId], references: [id], onDelete: Cascade)
+  
+  // Security details
+  isin                  String                @db.VarChar(12)
+  securityName          String                @map("security_name")
+  category              String
+  faceValue             Decimal               @db.Decimal(15, 2) @map("face_value")
+  residualMaturityYears Decimal               @db.Decimal(5, 2) @map("residual_maturity_years")
+  
+  // Price information
+  wapFimmda             Decimal               @db.Decimal(10, 2) @map("wap_fimmda")
+  wapTradingPlatform    Decimal?              @db.Decimal(10, 2) @map("wap_trading_platform")
+  
+  // Analysis results
+  profitLoss            ProfitLossStatus?     @map("profit_loss")
+  differenceAmount      Decimal?              @db.Decimal(15, 2) @map("difference_amount")
+  differencePercent     Decimal?              @db.Decimal(5, 2) @map("difference_percent")
+  
+  // Risk limits applied
+  cutLossLimit          Decimal?              @db.Decimal(5, 2) @map("cut_loss_limit")
+  profitBookingLimit    Decimal?              @db.Decimal(5, 2) @map("profit_booking_limit")
+  
+  // Trade analysis
+  lowestPrice           Decimal?              @db.Decimal(10, 2) @map("lowest_price")
+  highestPrice          Decimal?              @db.Decimal(10, 2) @map("highest_price")
+  
+  createdAt             DateTime              @default(now()) @map("created_at")
+  
+  @@index([processingId])
+  @@index([isin])
+  @@map("stop_loss_results")
+}
+
+// Breach results (for audit trail)
+model StopLossBreachResult {
+  id                    String                @id @default(cuid())
+  processingId          String                @map("processing_id")
+  processing            StopLossProcessing    @relation(fields: [processingId], references: [id], onDelete: Cascade)
+  
+  // Security details
+  isin                  String                @db.VarChar(12)
+  securityName          String                @map("security_name")
+  
+  // Breach details
+  breachType            BreachType            @map("breach_type")
+  wap                   Decimal               @db.Decimal(10, 2)
+  marketPrice           Decimal               @db.Decimal(10, 2) @map("market_price")
+  differenceAmount      Decimal               @db.Decimal(15, 2) @map("difference_amount")
+  differencePercent     Decimal               @db.Decimal(5, 2) @map("difference_percent")
+  limitPercent          Decimal               @db.Decimal(5, 2) @map("limit_percent")
+  breachAmount          Decimal               @db.Decimal(5, 2) @map("breach_amount")
+  
+  createdAt             DateTime              @default(now()) @map("created_at")
+  
+  @@index([processingId])
+  @@index([isin])
+  @@map("stop_loss_breach_results")
+}
+
+// pdr1 automation 
+
+model Pdr1ImDeal {
+  id                    Int       @id @default(autoincrement())
+  
+  // Security Information
+  securityName          String?   @db.VarChar(500)
+  identificationNo      String?   @db.VarChar(100)
+  instrumentType        String?   @db.VarChar(100)
+  
+  // Portfolio and Deal Information
+  portfolio             String?   @db.VarChar(100)
+  dealRef               String?   @db.VarChar(100)
+  
+  // Categories
+  category              String?   @db.VarChar(100)
+  subCategory           String?   @db.VarChar(100)
+  
+  // Counterparty
+  counterparty          String?   @db.VarChar(500)
+  
+  // Dates and Times
+  dealDate              DateTime? @db.Date
+  dealTime              String?   @db.VarChar(20)
+  valueDate             DateTime? @db.Date
+  maturityDate          DateTime?
+  
+  // Transaction Details
+  opnType               String?   @db.VarChar(20)
+  quantity              Float?    @db.DoublePrecision
+  mktNominalVal         Float?    @db.DoublePrecision
+  price                 Float?    @db.DoublePrecision
+  rateYield             Float?    @db.DoublePrecision
+  bookValue             Float?    @db.DoublePrecision
+  
+  // Interest Information
+  accruedInterestDays   Float?    @db.DoublePrecision
+  accruedInterestAmount Float?    @db.DoublePrecision
+  
+  // Currency and Settlement
+  ccy                   String?   @db.VarChar(10)
+  settlementAmount      Float?    @db.DoublePrecision
+  
+  // Personnel
+  dealer                String?   @db.VarChar(100)
+  brokerName            String?   @db.VarChar(200)
+  
+  // Charges and P&L
+  brokerageAmount       Float?    @db.DoublePrecision
+  taxOtherCharges       Float?    @db.DoublePrecision
+  holdingCost           Float?    @db.DoublePrecision
+  profitLoss            Float?    @db.DoublePrecision
+  
+  // SLR Information
+  slrNslr               String?   @db.VarChar(20)
+  
+  // Authorization
+  authorizerTime        String?   @db.VarChar(20)
+  authorizerDate        DateTime? @db.Date
+  authorizerName        String?   @db.VarChar(100)
+  
+  // Additional Information
+  remarks               String?   @db.Text
+  
+  // Metadata
+  uploadBatchId         String?   @db.VarChar(100)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  // Indexes for performance
+  @@index([portfolio])
+  @@index([category])
+  @@index([valueDate])
+  @@index([opnType])
+  @@index([portfolio, opnType, category])
+  @@index([valueDate, portfolio, opnType])
+  @@index([uploadBatchId])
+  
+  @@map("pdr1_im_deals")
+}
+
+// 9. Repo Deal Outstanding table
+model Pdr1RepoDeal {
+  id                    Int       @id @default(autoincrement())
+  
+  // Deal Information
+  dealNo                String?   @db.VarChar(100)
+  instrument            String?   @db.VarChar(100)
+  securityName          String?   @db.VarChar(500)
+  isin                  String?   @db.VarChar(100)
+  
+  // Dates
+  dealDate              DateTime? @db.Date
+  valueDate             DateTime? @db.Date
+  maturityDate          DateTime? @db.Date
+  
+  // Financial Details
+  faceValue             Float?    @db.DoublePrecision
+  leg1Price             Float?    @db.DoublePrecision
+  leg2Price             Float?    @db.DoublePrecision
+  rate                  Float?    @db.DoublePrecision
+  tenor                 Int?
+  
+  // Settlement
+  settlementAmountLeg1  Float?    @db.DoublePrecision
+  settlementAmountLeg2  Float?    @db.DoublePrecision
+  
+  // Counterparty
+  counterparty          String?   @db.VarChar(500)
+  
+  // Additional
+  remarks               String?   @db.Text
+  uploadBatchId         String?   @db.VarChar(100)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  @@index([instrument])
+  @@index([valueDate])
+  @@index([instrument, valueDate])
+  @@index([uploadBatchId])
+  
+  @@map("pdr1_repo_deals")
+}
+
+// 3. MM (Money Market) Deal table
+model Pdr1MmDeal {
+  id                    Int       @id @default(autoincrement())
+  
+  // Deal Information
+  dealNo                String?   @db.VarChar(100)
+  instrumentName        String?   @db.VarChar(100)
+  instrumentType        String?   @db.VarChar(100)
+  
+  // Dates
+  dealDate              DateTime? @db.Date
+  valueDate             DateTime? @db.Date
+  maturityDate          DateTime? @db.Date
+  
+  // Financial Details
+  principal             Float?    @db.DoublePrecision
+  rate                  Float?    @db.DoublePrecision
+  tenor                 Int?
+  baseEqvlnt            Float?    @db.DoublePrecision // Base Equivalent (Accept-Place)
+  
+  // Counterparty
+  counterparty          String?   @db.VarChar(500)
+  
+  // Status
+  status                String?   @db.VarChar(50)
+  
+  // Additional
+  remarks               String?   @db.Text
+  uploadBatchId         String?   @db.VarChar(100)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  @@index([instrumentName])
+  @@index([valueDate])
+  @@index([instrumentType])
+  @@index([uploadBatchId])
+  
+  @@map("pdr1_mm_deals")
+}
+
+// 4. MM Deal Outstanding table
+
+model Pdr1MmDealOutstanding {
+  id                    Int       @id @default(autoincrement())
+  
+  // Deal Information
+  dealNo                String?   @db.VarChar(100)
+  dealer                String?   @db.VarChar(100)
+  counterparty          String?   @db.VarChar(500)
+  portfolio             String?   @db.VarChar(100)
+  
+  // Instrument Information
+  instrumentName        String?   @db.VarChar(100)
+  instrumentType        String?   @db.VarChar(100)
+  instrumentCategory    String?   @db.VarChar(100)
+  
+  // Dates - INCLUDING THE NEW DATE FIELD
+  date                  DateTime? @db.Date  // This is the key field for grouping
+  dealDate              DateTime? @db.Date
+  dealTime              String?   @db.VarChar(20)
+  valueDate             DateTime? @db.Date
+  maturityDate          DateTime? @db.Date
+  lastInterestDate      DateTime? @db.Date
+  nextInterestDate      DateTime? @db.Date
+  
+  // Financial Details
+  principal             Float?    @db.DoublePrecision
+  rate                  Float?    @db.DoublePrecision
+  tenor                 Int?
+  baseEqvlnt            Float?    @db.DoublePrecision
+  outstandingAmount     Float?    @db.DoublePrecision
+  interestAmount        Float?    @db.DoublePrecision
+  principalPlusInterest Float?    @db.DoublePrecision
+  accruedInterest       Float?    @db.DoublePrecision
+  
+  // Additional Details
+  operationType         String?   @db.VarChar(50)
+  dealCurrency          String?   @db.VarChar(10)
+  interestPractice      String?   @db.VarChar(50)
+  interestBasis         String?   @db.VarChar(50)
+  benchmark             String?   @db.VarChar(50)
+  spread                Float?    @db.DoublePrecision
+  interestSettlementFreq String?  @db.VarChar(50)
+  interestFixingFreq    String?   @db.VarChar(50)
+  
+  status                String?   @db.VarChar(50)
+  remarks               String?   @db.Text
+  
+  uploadBatchId         String?   @db.VarChar(100)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  // Indexes for performance
+  @@index([instrumentName, date])     // Key index for grouping by instrument and date
+  @@index([instrumentName, valueDate])
+  @@index([uploadBatchId])
+  @@index([date])                     // Index for date grouping
+  @@index([valueDate])
+  @@index([uploadBatchId, date])      // Composite index for batch and date
+  
+  @@map("pdr1_mm_deals_outstanding")
+}
+
+// 5. FIMMDA Valuation table
+model Pdr1FimmdaVal {
+  id                    Int       @id @default(autoincrement())
+  
+  // Security Information
+  securityName          String?   @db.VarChar(500)
+  identificationNo      String?   @db.VarChar(100) // ISIN
+  category              String?   @db.VarChar(100)
+  subCategory           String?   @db.VarChar(100)
+  portfolio             String?   @db.VarChar(100)
+  
+  // Valuation Date
+  valueDate             DateTime? @db.Date
+  
+  // Financial Details
+  faceValue             Float?    @db.DoublePrecision
+  bookValue             Float?    @db.DoublePrecision
+  marketValue           Float?    @db.DoublePrecision
+  marketPrice           Float?    @db.DoublePrecision
+  wap                   Float?    @db.DoublePrecision // Weighted Average Price
+  
+  // Duration and Risk
+  mDuration             Float?    @db.DoublePrecision // Modified Duration
+  pvbp                  Float?    @db.DoublePrecision // Price Value of Basis Point
+  
+  // Interest
+  accruedInterest       Float?    @db.DoublePrecision
+  
+  // Additional
+  uploadBatchId         String?   @db.VarChar(100)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  @@index([category, portfolio])
+  @@index([identificationNo])
+  @@index([valueDate])
+  @@index([uploadBatchId])
+  
+  @@map("pdr1_fimmda_vals")
+}
+
+// 6. SLR NDS-OM Reconciliation table
+model Pdr1SlrNds {
+  id                    Int       @id @default(autoincrement())
+  
+  // Security Information
+  instrumentName        String?   @db.VarChar(500)
+  isin                  String?   @db.VarChar(100)
+  
+  // Date
+  valueDate             DateTime? @db.Date
+  
+  // Positions
+  ownStock              Float?    @db.DoublePrecision
+  repo                  Float?    @db.DoublePrecision
+  rbiRefinance          Float?    @db.DoublePrecision
+  collateral            Float?    @db.DoublePrecision
+  lien                  Float?    @db.DoublePrecision
+  sgf                   Float?    @db.DoublePrecision
+  derivative            Float?    @db.DoublePrecision
+  treps                 Float?    @db.DoublePrecision
+  deflt                 Float?    @db.DoublePrecision
+  
+  // Total
+  totalPledged          Float?    @db.DoublePrecision
+  netPosition           Float?    @db.DoublePrecision
+  
+  // Additional
+  uploadBatchId         String?   @db.VarChar(100)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  @@index([isin])
+  @@index([instrumentName])
+  @@index([valueDate])
+  @@index([uploadBatchId])
+  
+  @@map("pdr1_slr_nds")
+}
+
+// 7. Processing batch table to track uploads
+model Pdr1ProcessingBatch {
+  id                    String    @id @default(uuid())
+  
+  // File tracking
+  imDealUploaded        Boolean   @default(false)
+  repoDealUploaded      Boolean   @default(false)
+  mmDealUploaded        Boolean   @default(false)
+  fimmdaValUploaded     Boolean   @default(false)
+  slrNdsUploaded        Boolean   @default(false)
+  
+  // Processing status
+  status                String    @default("uploading") // uploading, processing, completed, failed
+  processingStartedAt   DateTime?
+  processingCompletedAt DateTime?
+  
+  // Results
+  totalRecords          Int       @default(0)
+  processedRecords      Int       @default(0)
+  errorRecords          Int       @default(0)
+  
+  // Error tracking
+  errors                Json?
+  
+  // User tracking
+  uploadedBy            String?   @db.VarChar(100)
+  
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  @@map("pdr1_processing_batches")
+}
+
+// 8. Calculated results table
+model Pdr1CalculatedResult {
+  id                    Int       @id @default(autoincrement())
+  
+  batchId               String    @db.VarChar(100)
+  sectionId             String    @db.VarChar(20) // e.g., '1A1', '1B2', etc.
+  valueDate             DateTime  @db.Date
+  calculatedValue       Float     @db.DoublePrecision
+  
+  createdAt             DateTime  @default(now())
+  
+  @@unique([batchId, sectionId, valueDate])
+  @@index([batchId])
+  @@index([sectionId])
+  @@index([valueDate])
+  
+  @@map("pdr1_calculated_results")
+}
+
+// Repo Deal Outstanding table for outstanding positions
+model Pdr1RepoDealOutstanding {
+  id                    Int       @id @default(autoincrement())
+  
+  // Same structure as Repo Deal but for outstanding positions
+  dealNo                String?   @db.VarChar(100)
+  instrument            String?   @db.VarChar(100)
+  securityName          String?   @db.VarChar(500)
+  isin                  String?   @db.VarChar(100)
+  
+  dealDate              DateTime? @db.Date
+  valueDate             DateTime? @db.Date
+  maturityDate          DateTime? @db.Date
+  
+  faceValue             Float?    @db.DoublePrecision
+  leg1Price             Float?    @db.DoublePrecision
+  leg2Price             Float?    @db.DoublePrecision
+  rate                  Float?    @db.DoublePrecision
+  tenor                 Int?
+  
+  settlementAmountLeg1  Float?    @db.DoublePrecision
+  settlementAmountLeg2  Float?    @db.DoublePrecision
+  outstandingAmount     Float?    @db.DoublePrecision
+  
+  counterparty          String?   @db.VarChar(500)
+  status                String?   @db.VarChar(50)
+  
+  uploadBatchId         String?   @db.VarChar(100)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  @@index([instrument, valueDate])
+  @@index([uploadBatchId])
+  
+  @@map("pdr1_repo_deals_outstanding")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum ProcessingStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum ProfitLossStatus {
+  PROFIT
+  LOSS
+  NEUTRAL
+  NON_TRADED
+}
+
+enum BreachType {
+  LOSS_BREACH
+  PROFIT_BREACH
+}
+
+model FIMMDA {
+  id                     Int      @id @default(autoincrement())
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+  valuationDate          DateTime
+  instrumentId           String   @db.VarChar(50)
+  portfolio              String   @db.VarChar(50)
+  isin                   String   @unique @db.VarChar(20)
+  securityName           String   @db.VarChar(255)
+  category               String   @db.VarChar(50)
+  subCategory            String   @db.VarChar(50)
+  instrumentType         String   @db.VarChar(50)
+  slrNslr                String   @db.VarChar(20)
+  issuer                 String   @db.VarChar(100)
+  faceValuePerUnit       Float?
+  quantity               Float?
+  faceValue              Float?
+  wap                    Float?
+  currentYield           Float?
+  bookValue              Float?
+  maturityDate           DateTime?
+  coupon                 Float?
+  marketValue            Float?
+  marketPrice            Float?
+  marketPriceValuation   Float?
+  difference             Float?
+  marketYield            Float?
+  appreciation           Float?
+  depreciation           Float?
+  netAppDep              Float?
+  duration               Float?
+  mDuration              Float?
+  pv01                   Float?
+  convexity              Float?
+  amortization           Float?
+  accountedAmortization  Float?
+  discountAccrual        Float?
+  accruedInterest        Float?
+  custodyPosNumber       Float?
+  custodyPosType         Float?
+  interestFrequency      String?  @db.VarChar(30)
+  interestPractice       String?  @db.VarChar(30)
+  putDate                DateTime?
+  callDate               DateTime?
+  lastCoupon             DateTime?
+  nextInterest           DateTime?
+  issueDate              DateTime
+  place                  String   @db.VarChar(100)
+  country                String   @db.VarChar(50)
+  bookingBasis           String   @db.VarChar(30)
+  residualMaturity       Float?
+  residualMaturityYears  Float?
+  fimmdaCategory         String?  @db.VarChar(50)
+  ratingAgency           String?  @db.VarChar(50)
+  rating                 String?  @db.VarChar(10)
+  listed                 String   @db.VarChar(10)
+  secured                String   @db.VarChar(20)
+}
+
+model G_Sec {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isin       String   @db.VarChar(20) @unique
+  maturityDate  DateTime
+  priceRs       Float
+  ytm           Float
+  coupon       Float
+
+  uploadBatchId         String?   @db.VarChar(100)
+  @@index([isin,priceRs])
+  @@index([uploadBatchId])
+
+  @@map("g_sec")
+
+}
+
+model SpecialG_Sec {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  isin          String   @db.VarChar(20) @unique
+  maturityDate  DateTime
+  priceRs       Float
+  ymt           Float
+}
+
+model Strips {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  isin          String   @db.VarChar(20)
+  maturityDate  DateTime
+  priceRs       Float
+  ymt           Float
+}
+
+model SDL {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  isin          String   @db.VarChar(20)
+  maturityDate  DateTime
+  priceRs       Float
+  ymt           Float
+}
+
+model SDL_UDAY {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  isin          String   @db.VarChar(20)
+  maturityDate  DateTime
+  priceRs       Float
+  ymt           Float
+}
+
+model ValuationProcessingBatch {
+  id                    String    @id @default(uuid())
+
+  // File tracking for valuation-specific files
+  gsecFileUploaded      Boolean   @default(false)   // Replaces imDealUploaded
+  sdlFileUploaded       Boolean   @default(false)   // Replaces repoDealUploaded
+  nseFileUploaded       Boolean   @default(false)   // Replaces mmDealUploaded
+  fimmdaFileUploaded    Boolean   @default(false)   // Replaces fimmdaValUploaded
+  stripsFileUploaded    Boolean   @default(false)   // Replaces slrNdsUploaded
+
+  // Processing status
+  status                String    @default("uploading") // uploading, processing, completed, failed
+  processingStartedAt   DateTime?
+  processingCompletedAt DateTime?
+
+  // Results
+  totalRecords          Int       @default(0)
+  processedRecords      Int       @default(0)
+  errorRecords          Int       @default(0)
+
+  // Error tracking
+  errors                Json?
+
+  // User tracking
+  uploadedBy            String?   @db.VarChar(100)
+
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("valuation_processing_batch")
+}
