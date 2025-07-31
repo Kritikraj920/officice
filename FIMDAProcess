@@ -1,0 +1,115 @@
+import * as XLSX from 'xlsx';
+import { PrismaClient } from '@prisma/client';
+import { FIMMDA_COLUMN_MAPPING } from '../valuationTypes';
+import { BaseFileProcessor } from './BaseFileProcessor';
+
+export class FIMMDAProcessor extends BaseFileProcessor {
+  constructor(prisma: PrismaClient) {
+    super(prisma);
+  }
+
+  async processFile(file: Express.Multer.File, batchId: string) {
+    const workbook = XLSX.read(file.buffer, { type: 'buffer' });
+    const sheetName = workbook.SheetNames.find(name => name.toLowerCase() === 'details');
+    if (!sheetName) throw new Error("Sheet 'details' not found");
+
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false });
+
+    const headerRowIndex = this.findHeaderRow(jsonData);
+    if (headerRowIndex === -1) throw new Error("Header row not found");
+
+    const headers = jsonData[headerRowIndex].map((cell: any) => (cell || '').toString().toLowerCase().trim());
+    const records = [];
+
+    for (let i = headerRowIndex + 1; i < jsonData.length; i++) {
+      const row = jsonData[i];
+      const record: any = {};
+
+      headers.forEach((header: string, colIndex: number) => {
+        const mappedField = FIMMDA_COLUMN_MAPPING[header];
+        if (mappedField) {
+          let value = row[colIndex];
+
+          if (header.includes('date') && value) {
+            value = new Date(value);
+          } else if (typeof value === 'string' && !isNaN(parseFloat(value))) {
+            value = parseFloat(value);
+          }
+
+          record[mappedField] = value;
+        }
+      });
+
+      if (Object.keys(record).length > 0) {
+        record.uploadBatchId = batchId;
+        records.push(record);
+      }
+    }
+
+    await this.prisma.fIMMDA.createMany({
+      data: records,
+      skipDuplicates: true,
+    });
+
+    return { success: true, count: records.length };
+  }
+}
+export const FIMMDA_COLUMN_MAPPING: Record<string, string> = {
+  'valuation date': 'valuationDate',
+  'instrument id': 'instrumentId',
+  'portfolio': 'portfolio',
+  'isin': 'isin',
+  'security name': 'securityName',
+  'category': 'category',
+  'sub category': 'subCategory',
+  'instrument type': 'instrumentType',
+  'slr/ nslr': 'slrNslr',
+  'issuer': 'issuer',
+  'face value per unit': 'faceValuePerUnit',
+  'quantity': 'quantity',
+  'face value': 'faceValue',
+  'wap': 'wap',
+  'current yield': 'currentYield',
+  'book value': 'bookValue',
+  'maturity date': 'maturityDate',
+  'coupon': 'coupon',
+  'market value': 'marketValue',
+  'market price': 'marketPrice',
+  'mp as per valuation': 'marketPriceValuation',
+  'difference': 'difference',
+  'market yield': 'marketYield',
+  'appreciation': 'appreciation',
+  'depreciation': 'depreciation',
+};
+model FIMMDA {
+  id                   Int      @id @default(autoincrement())
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  valuationDate        DateTime
+  instrumentId         String   @db.VarChar(50)
+  portfolio            String   @db.VarChar(50)
+  isin                 String   @db.VarChar(20)
+  securityName         String   @db.VarChar(255)
+  category             String   @db.VarChar(50)
+  subCategory          String   @db.VarChar(50)
+  instrumentType       String   @db.VarChar(50)
+  slrNslr              String   @db.VarChar(20)
+  issuer               String   @db.VarChar(100)
+  faceValuePerUnit     Float?
+  quantity             Float?
+  faceValue            Float?
+  wap                  Float?
+  currentYield         Float?
+  bookValue            Float?
+  maturityDate         DateTime?
+  coupon               Float?
+  marketValue          Float?
+  marketPrice          Float?
+  marketPriceValuation Float?
+  difference           Float?
+  marketYield          Float?
+  appreciation         Float?
+  depreciation         Float?
+  uploadBatchId        String   @db.VarChar(100) // for tracking
+}
